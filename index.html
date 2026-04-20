@@ -1071,15 +1071,13 @@ function doExport(){
     document.getElementById('btn-restore').onclick=function(){
       try{
         const d=JSON.parse(localStorage.getItem('lagerplan_autosave'));
-        groups=d.groups||[];labels=d.labels||[];BASE_PX=d.px||8;
+        groups=d.groups||[];
+        labels=d.labels||[];
+        BASE_PX=d.px||8;
         banner.remove();
-        document.getElementById('zslider').value=BASE_PX;
-        document.getElementById('zlabel').textContent=BASE_PX+'px/m';
-        drawTerrain();
-        renderAll();
-        
-        setTimeout(fitToScreen,100);
-      }catch(e){}
+        setBasePx(BASE_PX);
+        setTimeout(fitToScreen,200);
+      }catch(e){console.error(e);}
     };
     document.getElementById('btn-ignore').onclick=function(){banner.remove();};
   }catch(e){}
@@ -1094,6 +1092,6 @@ setTimeout(fitToScreen,100);
 
 
 
-<span>10 m</span>
+<span>10 m</span></div>
 
 </body></html>
